@@ -1,0 +1,20 @@
+import numpy as np
+import pandas as pd
+
+data = pd.read_csv("players_20.csv")
+data.head()
+
+
+#Imports the tools needed to run plotly offline - usually plotly interacts with an online resource.
+#These imports allow us to host everything from our computer
+from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
+import cufflinks as cf
+
+#Allows us to plot our interactive charts in our Jupyter Notebook
+init_notebook_mode(connected=True)
+cf.go_offline()
+
+
+data.iplot(kind='scatter',x='height_cm',y='weight_kg',
+           mode='markers',text='short_name',size=10,
+           xTitle='Height',yTitle='Weight',title='Weight vs Height')
