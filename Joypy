@@ -1,0 +1,20 @@
+from __future__ import unicode_literals
+import joypy
+import pandas as pd
+from matplotlib import pyplot as plt
+from matplotlib import cm
+%matplotlib inline
+
+# Our dataset has 1350 observations, each containing one of the most expensive 50 transfers for the years 1991 through 2017.
+df = pd.read_csv("top50.csv")
+
+fig, axes = joypy.joyplot(df[df.Player != 'Neymar'], by="Year", column="Value",figsize=(5,8),
+             linewidth=0.05,overlap=3,colormap=cm.summer_r,x_range=[0,110])
+
+plt.text(40, 0.8, "Top 50 transfer values (€m) \n 1991-2017",fontsize=12)
+
+plt.show()
+
+fig, axes = joypy.joyplot(df[df.Player != 'Neymar'],by="Year", column="Value", ylabels=False, xlabels=False, 
+                          grid=False, fill=False, background='k', linecolor="w", linewidth=1, x_range=[-60,110],
+                          legend=False, overlap=0.5, figsize=(6,5),kind="counts", bins=80)
