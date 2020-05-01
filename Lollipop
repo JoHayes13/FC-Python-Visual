@@ -1,0 +1,24 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+#This next line makes our charts show up in the notebook
+%matplotlib inline
+
+table = pd.read_csv("1617table.csv")
+
+#Create an array of equal length to our bars, each value is the hex code for the team's colours, in order of our chart
+teamColours = ['#034694','#001C58','#5CBFEB','#D00027',
+              '#EF0107','#DA020E','#274488','#ED1A3B',
+               '#000000','#091453','#60223B','#0053A0',
+               '#E03A3E','#1B458F','#000000','#53162f',
+               '#FBEE23','#EF6610','#C92520','#BA1F1A']
+
+plt.hlines(y=np.arange(1,21),xmin=0,xmax=table['Pts'],color=teamColours)
+plt.plot(table['Pts'], np.arange(1,21), "o")
+
+plt.yticks(np.arange(1,21), table['Team'])
+plt.ylabel("Team")
+plt.xlabel("Points")
+plt.title("Premier League 16/17")
+plt.show()
