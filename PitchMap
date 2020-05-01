@@ -1,0 +1,63 @@
+import matplotlib.pyplot as plt
+from matplotlib.patches import Arc
+
+def createPitch():
+    
+    #Create figure
+    fig=plt.figure()
+    ax=fig.add_subplot(1,1,1)
+
+    #Pitch Outline & Centre Line
+    plt.plot([0,0],[0,68], color="black")
+    plt.plot([0,105],[68,68], color="black")
+    plt.plot([105,105],[68,0], color="black")
+    plt.plot([105,0],[0,0], color="black")
+    plt.plot([52.5,52.5],[0,68], color="black")
+    
+    #Left Penalty Area
+    plt.plot([16.5,16.5],[54,14],color="black")
+    plt.plot([0,16.5],[54,54],color="black")
+    plt.plot([16.5,0],[14,14],color="black")
+    
+    #Right Penalty Area
+    plt.plot([105,88.5],[54,54],color="black")
+    plt.plot([88.5,88.5],[54,14],color="black")
+    plt.plot([88.5,105],[14,14],color="black")
+    
+    #Left 6-yard Box
+    plt.plot([0,5.5],[43,43],color="black")
+    plt.plot([5.5,5.5],[43,25],color="black")
+    plt.plot([5.5,0.5],[25,25],color="black")
+    
+    #Right 6-yard Box
+    plt.plot([105,99.5],[43,43],color="black")
+    plt.plot([99.5,99.5],[43,25],color="black")
+    plt.plot([99.5,105],[25,25],color="black")
+    
+    #Prepare Circles
+    centreCircle = plt.Circle((52.5,34),9.15,color="black",fill=False)
+    centreSpot = plt.Circle((52.5,34),0.8,color="black")
+    leftPenSpot = plt.Circle((11,34),0.8,color="black")
+    rightPenSpot = plt.Circle((94,34),0.8,color="black")
+    
+    #Draw Circles
+    ax.add_patch(centreCircle)
+    ax.add_patch(centreSpot)
+    ax.add_patch(leftPenSpot)
+    ax.add_patch(rightPenSpot)
+    
+    #Prepare Arcs
+    leftArc = Arc((11,34),height=18.3,width=18.3,angle=0,theta1=310,theta2=50,color="black")
+    rightArc = Arc((94,34),height=18.3,width=18.3,angle=0,theta1=130,theta2=230,color="black")
+
+    #Draw Arcs
+    ax.add_patch(leftArc)
+    ax.add_patch(rightArc)
+    
+    #Tidy Axes
+    plt.axis('off')
+    
+    #Display Pitch
+    plt.show()
+    
+createPitch()
