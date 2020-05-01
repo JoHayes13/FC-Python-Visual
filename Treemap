@@ -1,0 +1,45 @@
+import matplotlib
+import matplotlib.pyplot as plt
+import pandas as pd
+import squarify
+
+data = pd.read_csv("ManCityATT.csv")
+
+# New dataframe, containing only players with more than 0 goals
+dataGoals = data[data["G"]>0]
+
+#Utilise matplotlib to scale our goal numbers between the min and max, then assign this scale to our values.
+norm = matplotlib.colors.Normalize(vmin=min(dataGoals.G), vmax=max(dataGoals.G))
+colors = [matplotlib.cm.Blues(norm(value)) for value in dataGoals.G]
+
+#Create our plot and resize it.
+fig = plt.gcf()
+ax = fig.add_subplot()
+fig.set_size_inches(16, 4.5)
+
+#Use squarify to plot our data, label it and add colours. We add an alpha layer to ensure black labels show through
+squarify.plot(label=dataGoals.PLAYER,sizes=dataGoals.G, color = colors, alpha=.6)
+plt.title("Man City Goals",fontsize=23,fontweight="bold")
+
+#Remove our axes and display the plot
+plt.axis('off')
+plt.show()
+
+
+
+dataAssists = data[data["A"]>0]
+
+norm2 = matplotlib.colors.Normalize(vmin=min(dataAssists.A), vmax=max(dataAssists.A))
+colors2 = [matplotlib.cm.Blues(norm2(value)) for value in dataAssists.A]
+
+fig = matplotlib.pyplot.gcf()
+fig.set_size_inches(16, 4.5)
+
+fig = plt.gcf()
+fig.set_size_inches(16, 4.5)
+
+squarify.plot(label=dataAssists.PLAYER,sizes=dataAssists.A, color = colors2, alpha=.6)
+plt.title("Man City Assists",fontsize=23,fontweight="bold")
+
+plt.axis('off')
+plt.show()
